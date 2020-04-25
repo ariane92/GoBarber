@@ -8,29 +8,42 @@ import logoImg from '../../assets/logo.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { useAuth } from '../../hooks/AuthContext';
 
+interface SignInFormData {
+  email: string;
+  password: string;
+}
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const { SignIn } = useAuth();
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('E-mail required')
-          .email('Enter a valid email address'),
-        password: Yup.string().required('Password required'),
-      });
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail required')
+            .email('Enter a valid email address'),
+          password: Yup.string().required('Password required'),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      const errors = getValidationErrors(err);
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+        SignIn({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (err) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [SignIn]
+  );
   return (
     <Container>
       <Content>
