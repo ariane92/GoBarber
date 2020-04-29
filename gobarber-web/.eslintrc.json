@@ -29,6 +29,7 @@
         "prettier"
     ],
     "rules": {
+      "no-shadow" : "off",
       "prettier/prettier": "error",
       "react/jsx-one-expression-per-line": "off",
       "no-unused-expressions": "off",
