@@ -33,44 +33,47 @@ const SignUp: React.FC = () => {
   const emailInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  const handleSignUp = useCallback(async (data: SignUpFormData) => {
-    try {
-      formRef.current?.setErrors({});
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Name required'),
-        email: Yup.string()
-          .required('E-mail required')
-          .email('Enter a valid email address'),
-        password: Yup.string().min(
-          6,
-          'Your password must be at least 6 digits'
-        ),
-      });
+  const handleSignUp = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Name required'),
+          email: Yup.string()
+            .required('E-mail required')
+            .email('Enter a valid email address'),
+          password: Yup.string().min(
+            6,
+            'Your password must be at least 6 digits'
+          ),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      await api.post('users', data);
-      Alert.alert(
-        'Cadastro realizado com sucesso',
-        'Você já pode realizar login na aplicação'
-      );
-      navigation.goBack();
-    } catch (err) {
-      console.log(err);
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
-        formRef.current?.setErrors(errors);
-        return;
+        await api.post('users', data);
+        Alert.alert(
+          'Cadastro realizado com sucesso',
+          'Você já pode realizar login na aplicação'
+        );
+        navigation.goBack();
+      } catch (err) {
+        console.log(err);
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+          return;
+        }
+
+        Alert.alert(
+          'Error no cadastro',
+          'Ocorreu um erro ao fazer cadastro, tente novamente'
+        );
       }
-
-      Alert.alert(
-        'Error no cadastro',
-        'Ocorreu um erro ao fazer cadastro, tente novamente'
-      );
-    }
-  }, []);
+    },
+    [navigation]
+  );
 
   return (
     <>
