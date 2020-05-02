@@ -14,6 +14,7 @@ import { Form } from '@unform/mobile';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 import getValidationErrors from '../../utils/getValidationErrors';
+import api from '../../services/api';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -30,6 +31,7 @@ const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
   const emailInputRef = useRef<TextInput>(null);
+  const navigation = useNavigation();
 
   const handleSignUp = useCallback(async (data: SignUpFormData) => {
     try {
@@ -49,10 +51,14 @@ const SignUp: React.FC = () => {
         abortEarly: false,
       });
 
-      // await api.post('users', data);
-
-      // history.push('/');
+      await api.post('users', data);
+      Alert.alert(
+        'Cadastro realizado com sucesso',
+        'Você já pode realizar login na aplicação'
+      );
+      navigation.goBack();
     } catch (err) {
+      console.log(err);
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
         formRef.current?.setErrors(errors);
@@ -66,7 +72,6 @@ const SignUp: React.FC = () => {
     }
   }, []);
 
-  const navigation = useNavigation();
   return (
     <>
       <KeyboardAvoidingView
