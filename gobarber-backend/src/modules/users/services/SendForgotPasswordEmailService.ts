@@ -1,5 +1,4 @@
 import { injectable, inject } from 'tsyringe';
-// import User from '../infra/typeorm/entities/User';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUserRepository';
@@ -9,7 +8,7 @@ interface IRequestDTO {
   email: string;
 }
 @injectable()
-class SendForgotPasswordEmailService {
+export default class SendForgotPasswordEmailService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -30,11 +29,9 @@ class SendForgotPasswordEmailService {
 
     await this.usersTokenRepository.generate(user.id);
 
-    this.mailProvider.sendMail(
+    await this.mailProvider.sendMail(
       email,
       'pedido de recuperação de senha recebido',
     );
   }
 }
-
-export default SendForgotPasswordEmailService;
