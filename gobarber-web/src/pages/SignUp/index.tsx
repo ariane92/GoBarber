@@ -30,13 +30,13 @@ const SignUp: React.FC = () => {
       try {
         formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          name: Yup.string().required('Name required'),
+          name: Yup.string().required('Nome obrigatório'),
           email: Yup.string()
-            .required('E-mail required')
+            .required('E-mail obrigatório')
             .email('Enter a valid email address'),
           password: Yup.string().min(
             6,
-            'Your password must be at least 6 digits'
+            'Sua senha precisa ter mínimo 6 digitos'
           ),
         });
 
