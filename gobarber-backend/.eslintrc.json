@@ -24,6 +24,7 @@
     "@typescript-eslint/camelcase": "off",
     "prettier/prettier": "error",
     "no-useless-constructor": "off",
+    "no-console": "off",
     "no-unused-expressions": "off",
     "class-methods-use-this": "off",
     "@typescript-eslint/interface-name-prefix": ["error", {"prefixWithI": "always"}],
