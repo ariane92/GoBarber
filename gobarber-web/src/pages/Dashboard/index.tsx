@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiPower, FiClock } from 'react-icons/fi';
 import {
   Container,
@@ -7,14 +7,17 @@ import {
   Profile,
   Content,
   Schedule,
-  Calendar,
   NextAppointment,
+  Section,
+  Appointment,
+  Calendar,
 } from './styles';
 
 import logoImg from '../../assets/logo.svg';
 import { useAuth } from '../../hooks/AuthContext';
 
 const Dashboard: React.FC = () => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const { SignOut, user } = useAuth();
   return (
     <Container>
@@ -58,6 +61,51 @@ const Dashboard: React.FC = () => {
               </span>
             </div>
           </NextAppointment>
+
+          <Section>
+            <strong>Manhã</strong>
+            <Appointment>
+              <span>
+                <FiClock /> 11:00
+              </span>
+              <div>
+                <img
+                  src="https://media-exp1.licdn.com/dms/image/C4D03AQFXemYjJXC_Rw/profile-displayphoto-shrink_100_100/0?e=1596067200&v=beta&t=2DL0dbVIn9TYFtyCxryumdkUbCsfrYZfRU-bQ_godzY"
+                  alt="Ariane Mateus"
+                />
+                <strong>Ariane Mateus</strong>
+              </div>
+            </Appointment>
+          </Section>
+          <Section>
+            <strong>Tarde</strong>
+
+            <Appointment>
+              <span>
+                <FiClock /> 14:00
+              </span>
+              <div>
+                <img
+                  src="https://media-exp1.licdn.com/dms/image/C4D03AQFXemYjJXC_Rw/profile-displayphoto-shrink_100_100/0?e=1596067200&v=beta&t=2DL0dbVIn9TYFtyCxryumdkUbCsfrYZfRU-bQ_godzY"
+                  alt="Ariane Mateus"
+                />
+                <strong>Ariane Mateus</strong>
+              </div>
+            </Appointment>
+
+            <Appointment>
+              <span>
+                <FiClock /> 17:00
+              </span>
+              <div>
+                <img
+                  src="https://media-exp1.licdn.com/dms/image/C4D03AQFXemYjJXC_Rw/profile-displayphoto-shrink_100_100/0?e=1596067200&v=beta&t=2DL0dbVIn9TYFtyCxryumdkUbCsfrYZfRU-bQ_godzY"
+                  alt="Ariane Mateus"
+                />
+                <strong>Ariane Mateus</strong>
+              </div>
+            </Appointment>
+          </Section>
         </Schedule>
         <Calendar />
       </Content>
