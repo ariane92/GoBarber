@@ -44,7 +44,7 @@ const SignUp: React.FC = () => {
             .email('Enter a valid email address'),
           password: Yup.string().min(
             6,
-            'Your password must be at least 6 digits'
+            'Your password must be at least 6 digits',
           ),
         });
 
@@ -55,7 +55,7 @@ const SignUp: React.FC = () => {
         await api.post('users', data);
         Alert.alert(
           'Cadastro realizado com sucesso',
-          'Você já pode realizar login na aplicação'
+          'Você já pode realizar login na aplicação',
         );
         navigation.goBack();
       } catch (err) {
@@ -68,11 +68,11 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Error no cadastro',
-          'Ocorreu um erro ao fazer cadastro, tente novamente'
+          'Ocorreu um erro ao fazer cadastro, tente novamente',
         );
       }
     },
-    [navigation]
+    [navigation],
   );
 
   return (

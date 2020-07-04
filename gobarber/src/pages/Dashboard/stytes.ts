@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
-import {FlatList} from 'react-native';
+import { FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import Provider from './index';
+
 export const Container = styled.View`
   flex: 1;
 `;
@@ -24,9 +25,7 @@ export const UserName = styled.Text`
   font-family: 'RobotoSlab-Medium';
 `;
 
-export const ProfileButton = styled.TouchableOpacity`
-
-`;
+export const ProfileButton = styled.TouchableOpacity``;
 
 export const UserAvatar = styled.Image`
   width: 56px;
@@ -45,7 +44,6 @@ export const ProviderContainer = styled(RectButton)`
   margin-bottom: 16px;
   flex-direction: row;
   align-items: center;
-
 `;
 export const ProviderAvatar = styled.Image`
   width: 72px;

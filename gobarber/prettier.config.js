@@ -1,4 +1,4 @@
 module.exports = {
-  singleQuote: true,
-  traillinfComma: 'all'
+  singleQuote: true, 
+  trailingComma: 'all',	
 }
