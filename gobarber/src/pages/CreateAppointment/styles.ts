@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
-import Provider from './index';
+import {Provider} from './index';
 import { RectButton } from 'react-native-gesture-handler';
 
 interface ProviderContainerProps {
@@ -68,5 +68,5 @@ export const Title = styled.Text`
   color: #f4ede8;
   font-family: 'RobotoSlab-Medium';
   font-size: 24px;
-  margin-left: 0 24px 24px;
+  margin: 0 24px 24px;
 `;
